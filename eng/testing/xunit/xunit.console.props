@@ -6,8 +6,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Condition="'$(TargetsNetCoreApp)' == 'true'" Include="Microsoft.DotNet.XUnitConsoleRunner" Version="$(MicrosoftDotNetXUnitConsoleRunnerVersion)" />
-    <PackageReference Condition="'$(TargetsNetFx)' == 'true'" Include="xunit.runner.console" Version="$(XUnitVersion)" />
+    <PackageReference Condition="$(TargetFramework.StartsWith('netcoreapp'))" Include="Microsoft.DotNet.XUnitConsoleRunner" Version="$(MicrosoftDotNetXUnitConsoleRunnerVersion)" />
+    <PackageReference Condition="$(TargetFramework.StartsWith('net4'))" Include="xunit.runner.console" Version="$(XUnitVersion)" />
 
     <!-- Microsoft.Net.Test.Sdk brings a lot of assemblies with it. To reduce helix payload submission size we disable it on CI. -->
     <PackageReference Condition="'$(ArchiveTests)' != 'true'" Include="Microsoft.NET.Test.Sdk" Version="$(MicrosoftNETTestSdkVersion)" />
